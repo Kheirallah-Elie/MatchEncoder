@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface Team {
+  id: number;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +15,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getTeams(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Team`);
+  getTeams(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/Team`);
   }
 
-  getPlayersByTeam(teamId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Team/${teamId}/Player`);
+  getPlayersByTeam(teamId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/Team/${teamId}/Player`);
   }
 
   createMatch(matchData: any): Observable<any> {
@@ -30,3 +35,5 @@ export class ApiService {
     return this.http.post(`${this.baseUrl}/Player`, playerData);
   }
 }
+
+

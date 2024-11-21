@@ -33,10 +33,12 @@ public class MatchService : Iservice<Match>
 
     public async Task<Match> CreateAsync(Match match)
     {
+        // Do not set the Id manually, just add the match to the context
         _context.Matches.Add(match);
         await _context.SaveChangesAsync();
-        return match;
+        return match;  // The match object now has the auto-generated Id from the database
     }
+
 
     public async Task<Match> UpdateAsync(Match match)
     {

@@ -1,40 +1,115 @@
 <h2>Create New Match</h2>
-<form (ngSubmit)="submitMatch()">
-  > hey
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>Match</title>
+</head>
+<body>
+  <div class="match-entry-container">
+    <h2>Enter Match Details</h2>
+    <form (ngSubmit)="submitMatch()">
+      <!-- Match Name -->
+      <div>
+        <label for="eventName">Match Name:</label>
+        <input type="text"
+               id="eventName"
+               name="eventName"
+               [(ngModel)]="matchData.eventName"
+               required />
+      </div>
+
+      <!-- Match Date & Time -->
+      <div>
+        <label for="matchDateTime">Match Date & Time:</label>
+        <input type="datetime-local"
+               id="matchDateTime"
+               name="matchDateTime"
+               [(ngModel)]="matchData.matchDateTime"
+               required />
+      </div>
+
+      <!-- Country -->
+      <div>
+        <label for="country">Country:</label>
+        <input type="text"
+               id="country"
+               name="country"
+               [(ngModel)]="matchData.country"
+               required />
+      </div>
+
+      <!-- City -->
+      <div>
+        <label for="city">City:</label>
+        <input type="text"
+               id="city"
+               name="city"
+               [(ngModel)]="matchData.city"
+               required />
+      </div>
+
+      <div>
+        <label for="teamA">Team A:</label>
+        <select id="teamA"
+                [(ngModel)]="matchData.teamAId"
+                name="teamA"
+                (change)="onTeamSelect('A', matchData.teamAId)"
+                class="form-input"
+                required>
+          <option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="teamAPlayers.length > 0">
+        <h3>Team A Players:</h3>
+        <ul>
+          <li *ngFor="let player of teamAPlayers">
+            <input type="checkbox"
+                   [(ngModel)]="player.selected"
+                   [name]="'teamA_player_' + player.id"
+                   [id]="'teamA_player_' + player.id" />
+            <label [for]="'teamA_player_' + player.id">
+              {{ player.name }} - {{ player.number }}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <label for="teamB">Team B:</label>
+        <select id="teamB"
+                [(ngModel)]="matchData.teamBId"
+                name="teamB"
+                (change)="onTeamSelect('B', matchData.teamBId)"
+                class="form-input"
+                required>
+          <option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="teamBPlayers.length > 0">
+        <h3>Team B Players:</h3>
+        <ul>
+          <li *ngFor="let player of teamBPlayers">
+            <input type="checkbox"
+                   [(ngModel)]="player.selected"
+                   [name]="'teamB_player_' + player.id"
+                   [id]="'teamB_player_' + player.id" />
+            <label [for]="'teamB_player_' + player.id">
+              {{ player.name }} - {{ player.number }}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
 
 
-    <input matInput formControlName="eventName" placeholder="Event Name">
-
-</form>
-<!--<form [formGroup]="matchForm" (ngSubmit)="submitMatch()">
-  <mat-form-field>
-    <input matInput formControlName="eventName" placeholder="Event Name">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput formControlName="matchDateTime" placeholder="Match Date and Time" type="datetime-local">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput formControlName="country" placeholder="Country">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput formControlName="city" placeholder="City">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select formControlName="teamAId" placeholder="Select Team A" (selectionChange)="onTeamSelect('A', $event.value)">
-      <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select formControlName="teamBId" placeholder="Select Team B" (selectionChange)="onTeamSelect('B', $event.value)">
-      <mat-option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit">Create Match</button>
-</form>
-  -->
