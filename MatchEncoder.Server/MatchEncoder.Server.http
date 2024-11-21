@@ -1,0 +1,6 @@
+@MatchEncoder.Server_HostAddress = http://localhost:5296
+
+GET {{MatchEncoder.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

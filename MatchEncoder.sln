@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchEncoder.Server", "MatchEncoder.Server\MatchEncoder.Server.csproj", "{7C10DB91-F6D5-46D5-96FF-6D52ED9969C6}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "matchencoder.client", "matchencoder.client\matchencoder.client.esproj", "{861DACF9-06F9-412B-BC52-AAC7F7E0224D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C10DB91-F6D5-46D5-96FF-6D52ED9969C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C10DB91-F6D5-46D5-96FF-6D52ED9969C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C10DB91-F6D5-46D5-96FF-6D52ED9969C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C10DB91-F6D5-46D5-96FF-6D52ED9969C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861DACF9-06F9-412B-BC52-AAC7F7E0224D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD7088B8-8A05-4AD1-A2D9-6522315AFEC7}
+	EndGlobalSection
+EndGlobal
