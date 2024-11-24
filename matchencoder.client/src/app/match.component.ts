@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ApiService } from '../services/api.service';
-
 
 interface Team {
   id: number;
@@ -8,8 +8,12 @@ interface Team {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-match',
   templateUrl: './match.component.html',
+})
+
+@Injectable({
+  providedIn: 'root'
 })
 
 

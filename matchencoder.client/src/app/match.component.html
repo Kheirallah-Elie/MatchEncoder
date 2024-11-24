@@ -1,11 +1,4 @@
-<h2>Create New Match</h2>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="utf-8" />
-  <title>Match</title>
-</head>
-<body>
+
   <div class="match-entry-container">
     <h2>Enter Match Details</h2>
     <form (ngSubmit)="submitMatch()">
@@ -46,6 +39,28 @@
                id="city"
                name="city"
                [(ngModel)]="matchData.city"
+               required />
+      </div>
+
+      <!-- Number of Quarter Times -->
+      <div>
+        <label for="numberOfQuarterTime">Number of Quarter Times:</label>
+        <input type="number"
+               id="numberOfQuarterTime"
+               name="numberOfQuarterTime"
+               [(ngModel)]="matchData.numberOfQuarterTime"
+               min="1"
+               required />
+      </div>
+
+      <!-- Duration of Timeout -->
+      <div>
+        <label for="durationOfTimeout">Duration of Timeout (minutes):</label>
+        <input type="number"
+               id="durationOfTimeout"
+               name="durationOfTimeout"
+               [(ngModel)]="matchData.durationOfTimeout"
+               min="1"
                required />
       </div>
 
@@ -109,7 +124,3 @@
       </div>
     </form>
   </div>
-</body>
-</html>
-
-
