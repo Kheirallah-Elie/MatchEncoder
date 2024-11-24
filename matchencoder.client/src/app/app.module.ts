@@ -6,11 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MatchComponent } from './MatchCreation/match.component';
+import { LoginComponent } from './Login/login.component';
+import { RegisterComponent } from './Register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MatchComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

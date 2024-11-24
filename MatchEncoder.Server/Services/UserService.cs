@@ -50,6 +50,6 @@ public class UserService
     {
         // Verify if the user exists with the given name and password
         return await _context.Users
-            .FirstOrDefaultAsync(u => u.Name == name && u.password == password);
+            .FirstOrDefaultAsync(u => u.Name == name && u.Password == password);
     }
 }
