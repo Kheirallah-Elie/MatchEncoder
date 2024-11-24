@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatchEncoder.Server.Migrations
 {
     [DbContext(typeof(MatchDbContext))]
-    partial class MatchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241124182539_AddUserTable")]
+    partial class AddUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace MatchEncoder.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Hour = new DateTime(2024, 11, 24, 21, 9, 39, 368, DateTimeKind.Local).AddTicks(8113),
+                            Hour = new DateTime(2024, 11, 24, 19, 25, 38, 655, DateTimeKind.Local).AddTicks(7327),
                             MatchId = 1,
                             PlayerId = 1,
                             Points = 3,
@@ -65,7 +68,7 @@ namespace MatchEncoder.Server.Migrations
                         new
                         {
                             Id = 2,
-                            Hour = new DateTime(2024, 11, 24, 21, 14, 39, 368, DateTimeKind.Local).AddTicks(8117),
+                            Hour = new DateTime(2024, 11, 24, 19, 30, 38, 655, DateTimeKind.Local).AddTicks(7331),
                             MatchId = 1,
                             PlayerId = 2,
                             Points = 0,
@@ -74,7 +77,7 @@ namespace MatchEncoder.Server.Migrations
                         new
                         {
                             Id = 3,
-                            Hour = new DateTime(2024, 11, 24, 21, 19, 39, 368, DateTimeKind.Local).AddTicks(8120),
+                            Hour = new DateTime(2024, 11, 24, 19, 35, 38, 655, DateTimeKind.Local).AddTicks(7335),
                             MatchId = 2,
                             PlayerId = 5,
                             Points = 2,
@@ -130,7 +133,7 @@ namespace MatchEncoder.Server.Migrations
                         {
                             Id = 1,
                             EventName = "Championship Finals",
-                            MatchDateTime = new DateTime(2024, 12, 4, 21, 9, 39, 368, DateTimeKind.Local).AddTicks(8023),
+                            MatchDateTime = new DateTime(2024, 12, 4, 19, 25, 38, 655, DateTimeKind.Local).AddTicks(7204),
                             MatchNumber = 0,
                             TeamAId = 1,
                             TeamBId = 2
@@ -139,7 +142,7 @@ namespace MatchEncoder.Server.Migrations
                         {
                             Id = 2,
                             EventName = "Summer League",
-                            MatchDateTime = new DateTime(2024, 12, 14, 21, 9, 39, 368, DateTimeKind.Local).AddTicks(8063),
+                            MatchDateTime = new DateTime(2024, 12, 14, 19, 25, 38, 655, DateTimeKind.Local).AddTicks(7244),
                             MatchNumber = 0,
                             TeamAId = 3,
                             TeamBId = 4
@@ -349,7 +352,7 @@ namespace MatchEncoder.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

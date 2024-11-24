@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -12,10 +13,17 @@ public class TeamController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Team>>> GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        return Ok(await _teamService.GetAllAsync());
+        var teams = await _teamService.GetAllAsync();
+        var teamDtos = teams.Select(t => new
+        {
+            id = t.Id,
+            name = t.Name
+        }).ToList();
+        return Ok(teamDtos);
     }
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Team>> GetById(int id)
@@ -46,5 +54,24 @@ public class TeamController : ControllerBase
         var result = await _teamService.DeleteAsync(id);
         if (!result) return NotFound();
         return NoContent();
+    }
+
+    [HttpGet("{id}/Player")]
+    public async Task<IActionResult> GetPlayersByTeamId(int id)
+    {
+        var players = await _teamService.GetPlayersByTeamIdAsync(id);
+
+        if (players == null || !players.Any())
+            return NotFound(new { message = $"No players found for team with ID {id}" });
+
+        var playerDtos = players.Select(p => new
+        {
+            id = p.Id,
+            name = p.Name,
+            number = p.Number, 
+            isCaptain = p.IsCaptain    
+        }).ToList();
+
+        return Ok(playerDtos);
     }
 }

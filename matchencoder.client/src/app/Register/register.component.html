@@ -1,0 +1,67 @@
+<body>
+
+  <div class="register-container">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text"
+               id="name"
+               name="name"
+               [(ngModel)]="name"
+               #nameInput="ngModel"
+               required
+               aria-describedby="nameError" />
+        <p *ngIf="nameInput.invalid && nameInput.touched" class="error-message">
+          Name is required.
+        </p>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password"
+               id="password"
+               name="password"
+               [(ngModel)]="password"
+               #passwordInput="ngModel"
+               required
+               aria-describedby="passwordError" />
+        <p *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+          Password is required.
+        </p>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password"
+               id="confirmPassword"
+               name="confirmPassword"
+               [(ngModel)]="confirmPassword"
+               #confirmPasswordInput="ngModel"
+               required
+               [ngClass]="{'invalid': confirmPassword && confirmPassword !== password}"
+               aria-describedby="confirmPasswordError" />
+        <p *ngIf="confirmPassword && confirmPassword !== password" class="error-message">
+          Passwords do not match.
+        </p>
+        <p *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched" class="error-message">
+          Confirm password is required.
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn" [disabled]="registerForm.invalid || confirmPassword !== password">
+        Register
+      </button>
+
+      <!-- Error message -->
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </form>
+
+    <!-- Link to Login Page -->
+    <p class="login-link">Already have an account? <a routerLink="/login">Login here</a></p>
+  </div>
+</body>

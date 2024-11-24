@@ -1,0 +1,126 @@
+
+  <div class="match-entry-container">
+    <h2>Enter Match Details</h2>
+    <form (ngSubmit)="submitMatch()">
+      <!-- Match Name -->
+      <div>
+        <label for="eventName">Match Name:</label>
+        <input type="text"
+               id="eventName"
+               name="eventName"
+               [(ngModel)]="matchData.eventName"
+               required />
+      </div>
+
+      <!-- Match Date & Time -->
+      <div>
+        <label for="matchDateTime">Match Date & Time:</label>
+        <input type="datetime-local"
+               id="matchDateTime"
+               name="matchDateTime"
+               [(ngModel)]="matchData.matchDateTime"
+               required />
+      </div>
+
+      <!-- Country -->
+      <div>
+        <label for="country">Country:</label>
+        <input type="text"
+               id="country"
+               name="country"
+               [(ngModel)]="matchData.country"
+               required />
+      </div>
+
+      <!-- City -->
+      <div>
+        <label for="city">City:</label>
+        <input type="text"
+               id="city"
+               name="city"
+               [(ngModel)]="matchData.city"
+               required />
+      </div>
+
+      <!-- Number of Quarter Times -->
+      <div>
+        <label for="numberOfQuarterTime">Number of Quarter Times:</label>
+        <input type="number"
+               id="numberOfQuarterTime"
+               name="numberOfQuarterTime"
+               [(ngModel)]="matchData.numberOfQuarterTime"
+               min="1"
+               required />
+      </div>
+
+      <!-- Duration of Timeout -->
+      <div>
+        <label for="durationOfTimeout">Duration of Timeout (minutes):</label>
+        <input type="number"
+               id="durationOfTimeout"
+               name="durationOfTimeout"
+               [(ngModel)]="matchData.durationOfTimeout"
+               min="1"
+               required />
+      </div>
+
+      <div>
+        <label for="teamA">Team A:</label>
+        <select id="teamA"
+                [(ngModel)]="matchData.teamAId"
+                name="teamA"
+                (change)="onTeamSelect('A', matchData.teamAId)"
+                class="form-input"
+                required>
+          <option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="teamAPlayers.length > 0">
+        <h3>Team A Players:</h3>
+        <ul>
+          <li *ngFor="let player of teamAPlayers">
+            <input type="checkbox"
+                   [(ngModel)]="player.selected"
+                   [name]="'teamA_player_' + player.id"
+                   [id]="'teamA_player_' + player.id" />
+            <label [for]="'teamA_player_' + player.id">
+              {{ player.name }} - {{ player.number }}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <label for="teamB">Team B:</label>
+        <select id="teamB"
+                [(ngModel)]="matchData.teamBId"
+                name="teamB"
+                (change)="onTeamSelect('B', matchData.teamBId)"
+                class="form-input"
+                required>
+          <option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="teamBPlayers.length > 0">
+        <h3>Team B Players:</h3>
+        <ul>
+          <li *ngFor="let player of teamBPlayers">
+            <input type="checkbox"
+                   [(ngModel)]="player.selected"
+                   [name]="'teamB_player_' + player.id"
+                   [id]="'teamB_player_' + player.id" />
+            <label [for]="'teamB_player_' + player.id">
+              {{ player.name }} - {{ player.number }}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>

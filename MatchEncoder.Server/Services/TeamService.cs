@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class TeamService : Iservice<Team>
+public class TeamService
 {
     private readonly MatchDbContext _context;
 
@@ -11,9 +11,13 @@ public class TeamService : Iservice<Team>
         _context = context;
     }
 
-    public async Task<IEnumerable<Team>> GetAllAsync()
+    public async Task<List<Team>> GetAllAsync()
     {
-        return await _context.Teams.Include(t => t.Players).ToListAsync();
+        return await _context.Teams.Select(t => new Team
+        {
+            Id = t.Id,
+            Name = t.Name
+        }).ToListAsync();
     }
 
     public async Task<Team> GetByIdAsync(int id)
@@ -43,5 +47,13 @@ public class TeamService : Iservice<Team>
         _context.Teams.Remove(team);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<Player>> GetPlayersByTeamIdAsync(int teamId)
+    {
+        var team = await _context.Teams.Include(t => t.Players)
+                                       .FirstOrDefaultAsync(t => t.Id == teamId);
+
+        return team?.Players.ToList() ?? new List<Player>();
     }
 }

@@ -9,11 +9,22 @@ public class MatchDbContext : DbContext
     public DbSet<Match> Matches { get; set; }
     public DbSet<Team> Teams { get; set; }
     public DbSet<Player> Players { get; set; }
+    public DbSet<User> Users { get; set; }
     public DbSet<MatchPlayer> MatchPlayers { get; set; }
     public DbSet<Event> Events { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<User>()
+            .Property(x => x.Id)
+            .ValueGeneratedOnAdd();
+
+        // Default auto-increment for Id fields (if using the default naming convention for Id property)
+        modelBuilder.Entity<Match>()
+            .Property(m => m.Id)
+            .ValueGeneratedOnAdd();  // Ensures auto-increment for the Id field.
+
         modelBuilder.Entity<Team>()
             .HasMany(team => team.Players) //  a team has many players
             .WithOne(player => player.Team) // every player has one team
