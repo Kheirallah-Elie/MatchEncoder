@@ -20,6 +20,7 @@ builder.Services.AddDbContext<MatchDbContext>(options =>
         sqlOptions => sqlOptions.MigrationsAssembly("MatchEncoder.Server") // Replace with actual assembly name
     ));
 
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<MatchService>();
 builder.Services.AddScoped<TeamService>();
 builder.Services.AddScoped<PlayerService>();

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { MatchComponent } from './match.component';
+import { MatchComponent } from './MatchCreation/match.component';
 
 @NgModule({
   declarations: [

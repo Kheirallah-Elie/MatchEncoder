@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { MatchComponent } from './match.component';
+import { MatchComponent } from './MatchCreation/match.component';
 
 
 const routes: Routes = [
