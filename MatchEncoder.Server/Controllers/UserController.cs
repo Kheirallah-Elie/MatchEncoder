@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace MatchEncoder.Server.Controllers
 {
@@ -13,14 +15,6 @@ namespace MatchEncoder.Server.Controllers
         public UserController(UserService userService)
         {
             _userService = userService;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _userService.GetByIdAsync(id);
-            if (user == null) return NotFound();
-            return Ok(user);
         }
 
         [HttpPost]
@@ -60,9 +54,51 @@ namespace MatchEncoder.Server.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User loginUser)
         {
-            var user = await _userService.AuthenticateAsync(loginUser.Name, loginUser.password);
+            var user = await _userService.AuthenticateAsync(loginUser.Name, loginUser.Password);
             if (user == null) return Unauthorized("Invalid username or password.");
             return Ok(user);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null) return NotFound();
+            return Ok(user);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(User user)
+        {
+
+            await _userService.CreateAsync(user);
+            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+        }
+
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] User loginUser)
+        {
+            if (loginUser == null)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            // Authenticate user using the user service (validate user credentials)
+            var user = await _userService.AuthenticateAsync(loginUser.Name, loginUser.Password);
+
+            if (user == null)
+            {
+                return Unauthorized("Invalid username or password.");
+            }
+
+            // Returning a dummy token (just a static string for now)
+            var dummyToken = "dummy-jwt-token-for-now";
+
+            // Respond with the dummy token
+            return Ok(new { token = dummyToken });
         }
     }
 
