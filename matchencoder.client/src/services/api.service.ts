@@ -10,6 +10,7 @@ export interface Team {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
   private baseUrl = 'https://localhost:7081/api';  // Replace with actual backend URL
 

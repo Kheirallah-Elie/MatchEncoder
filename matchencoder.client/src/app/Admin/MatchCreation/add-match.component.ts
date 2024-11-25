@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 
 interface Team {
   id: number;
@@ -8,13 +8,11 @@ interface Team {
 }
 
 @Component({
-  selector: 'app-match',
-  templateUrl: './match.component.html',
+  selector: 'add-match',
+  templateUrl: './add-match.component.html',
+  styleUrls: ['./add-match.component.css'],
 })
 
-@Injectable({
-  providedIn: 'root'
-})
 
 
 export class MatchComponent implements OnInit {
@@ -53,8 +51,6 @@ export class MatchComponent implements OnInit {
       }
     });
   }
-
-
 
   // Function to select players based on team selection
   onTeamSelect(team: 'A' | 'B', teamId: number): void {

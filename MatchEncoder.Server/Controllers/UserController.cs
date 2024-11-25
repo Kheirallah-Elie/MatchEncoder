@@ -81,24 +81,16 @@ namespace MatchEncoder.Server.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] User loginUser)
         {
-            if (loginUser == null)
-            {
-                return BadRequest("Invalid client request");
-            }
-
-            // Authenticate user using the user service (validate user credentials)
             var user = await _userService.AuthenticateAsync(loginUser.Name, loginUser.Password);
+            if (user == null) return Unauthorized("Invalid username or password.");
 
-            if (user == null)
+
+            return Ok(new
             {
-                return Unauthorized("Invalid username or password.");
-            }
-
-            // Returning a dummy token (just a static string for now)
-            var dummyToken = "dummy-jwt-token-for-now";
-
-            // Respond with the dummy token
-            return Ok(new { token = dummyToken });
+                id = user.Id,
+                name = user.Name,
+                isAdmin = user.IsAdmin
+            });
         }
     }
 

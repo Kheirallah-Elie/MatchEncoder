@@ -16,20 +16,23 @@ export class LoginComponent {
 
   login() {
     this.userService.login(this.name, this.password).subscribe({
-      next: (response) => {
-        // Authentification réussie, redirection vers la page des utilisateurs
-        this.router.navigate(['/create-match']); // check later if Admin or not
+      next: (response: any) => {
+        // Assuming `response` includes `isAdmin` and other user details
+        const isAdmin = response.isAdmin;
+
+        if (isAdmin) {
+          this.router.navigate(['/create-match']); // Route for admin users
+        } else {
+          this.router.navigate(['/register']); // Route for regular users
+        }
       },
       error: (error) => {
-        // Vérifie si l'erreur est liée à l'email ou au mot de passe
         if (error.status === 401) {
-          // Si l'erreur est un échec d'authentification
-          this.errorMessage = 'Invalid email or password. Please try again.';
+          this.errorMessage = 'Invalid username or password. Please try again.';
         } else {
-          // Pour toute autre erreur
           this.errorMessage = 'An unexpected error occurred. Please try again later.';
         }
-      }
+      },
     });
   }
 }

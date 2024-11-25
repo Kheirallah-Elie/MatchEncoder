@@ -1,0 +1,66 @@
+/* Global Styles for Header */
+header {
+  background-color: #0077cc; /* Vibrant blue for header background */
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+  .navbar h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  .navbar nav ul {
+    list-style: none;
+    display: flex; /* Display list items in a row */
+    margin: 0;
+    padding: 0;
+  }
+
+    .navbar nav ul li {
+      margin-left: 20px; /* Space between tabs */
+    }
+
+      .navbar nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+        .navbar nav ul li a:hover,
+        .navbar nav ul li a.active {
+          background-color: white; /* White background for active/hover */
+          color: #0077cc; /* Match header color for contrast */
+        }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+    .navbar nav ul {
+      flex-direction: column; /* Stack items vertically on small screens */
+    }
+
+      .navbar nav ul li {
+        margin-left: 0;
+        margin-bottom: 10px; /* Add spacing for stacked items */
+      }
+}

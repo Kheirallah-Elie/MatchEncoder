@@ -1,0 +1,101 @@
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f4f4f9; /* Soft background color */
+  color: #333; /* Neutral text color */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.match-entry-container {
+  background-color: #ffffff; /* White card background */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px 30px;
+  max-width: 600px;
+  width: 100%;
+  text-align: left;
+}
+
+  .match-entry-container h2 {
+    color: #0077cc; /* Eye-catching blue for heading */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .match-entry-container h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #555;
+  }
+
+label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+  color: #555;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+  input[type="text"]:focus,
+  input[type="datetime-local"]:focus,
+  input[type="number"]:focus,
+  select:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
+    outline: none;
+  }
+
+button {
+  background-color: #0077cc; /* Primary button color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+  button:hover {
+    background-color: #005fa3; /* Slightly darker on hover */
+    box-shadow: 0 4px 10px rgba(0, 95, 163, 0.2);
+  }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+  ul li {
+    margin-bottom: 10px;
+  }
+
+    ul li input[type="checkbox"] {
+      margin-right: 10px;
+      accent-color: #0077cc; /* Matches the theme color */
+    }
+
+form div {
+  margin-bottom: 20px;
+}

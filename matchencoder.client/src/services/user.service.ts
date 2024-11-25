@@ -29,16 +29,8 @@ export class UserService {
   }
 
   login(name: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { name, password }).pipe(
-      tap((response) => {
-        // Vérifiez que 'userId' est présent dans la réponse
-        if (!response.userId) {
-          throw new Error('Authentication failed');
-        }
-        // Stocke l'ID utilisateur en cas de succès
-        localStorage.setItem('userId', response.userId);
-      })
-    );
+    const body = { name, password };
+    return this.http.post(`${this.apiUrl}/login`, body);
   }
 
   logout(): Observable<any> {
